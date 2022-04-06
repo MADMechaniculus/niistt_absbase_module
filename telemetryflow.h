@@ -9,40 +9,30 @@ class NIISTT_BASE_MODULE_EXPORT TelemetryFlow
     std::queue<TelemetryMessage> msgQueue;
     boost::mutex queueMx;
 
-    boost::atomic<bool> empty;
+    boost::atomic<bool> empty{true};
 
 public:
     TelemetryFlow();
 
-    bool isEmpty(void) const {
-        return empty;
-    }
+    bool isEmpty(void) const;
 
     /**
      * @brief Забираем первое в очереди сообщение
      * @return Экземпляр сообщения
      */
-    TelemetryMessage dequeue(void) {
-        boost::lock_guard<boost::mutex>(this->queueMx);
-        if (empty)
-            throw std::runtime_error("Flow queue is empty");
-        TelemetryMessage msg(this->msgQueue.front());
-        this->msgQueue.pop();
-        empty.store(this->msgQueue.empty());
-        return msg;
-    }
+    TelemetryMessage dequeue(void);
 
-    void enqueue(TelemetryMessage & msg) {
-        boost::lock_guard<boost::mutex>(this->queueMx);
-        this->msgQueue.emplace(msg);
-        empty.store(this->msgQueue.empty());
-    }
+    /**
+     * @brief Добавление записи в поток телеметрии
+     * @param msg Ссылка на экземпляр записи
+     */
+    void enqueue(TelemetryMessage & msg);
 
-    void enqueue(TelemetryMessage && msg) {
-        boost::lock_guard<boost::mutex>(this->queueMx);
-        this->msgQueue.emplace(std::move(msg));
-        empty.store(this->msgQueue.empty());
-    }
+    /**
+     * @brief Добавление записи в поток телеметрии
+     * @param msg Rvalue экземпляр записи
+     */
+    void enqueue(TelemetryMessage && msg);
 };
 
 #endif // TELEMETRYFLOW_H

@@ -7,40 +7,31 @@
 #include <string>
 #include <queue>
 #include <sstream>
+#include <string>
 
 #include <boost/date_time.hpp>
 #include <boost/thread.hpp>
+#include <boost/atomic.hpp>
 
 class NIISTT_BASE_MODULE_EXPORT TelemetryMessage {
 
     boost::posix_time::ptime timeStamp;
-    std::string msg;
+    std::string msg{""};
 
-    TelemetryMessage(boost::posix_time::ptime timestamp, std::string message) : \
-        timeStamp(timestamp), msg(message) {}
+    TelemetryMessage(boost::posix_time::ptime timestamp, std::string message);
 
 public:
 
-    TelemetryMessage(const TelemetryMessage & msg) {
-        this->msg = msg.msg;
-        this->timeStamp = msg.timeStamp;
-    }
+    TelemetryMessage(const TelemetryMessage & msg);
 
     /**
      * @brief Создание телеметрической записи без возможности указания собственного времени
      * @param msg Сообщение, которое содержит запись
      * @return Экземпляр телеметрической записи
      */
-    static TelemetryMessage createMessage(std::string msg) {
-        return TelemetryMessage(boost::posix_time::second_clock::local_time(), msg);
-    }
+    static TelemetryMessage createMessage(std::string msg);
 
-    std::string serialize(void) {
-        std::ostringstream time;
-        time << this->timeStamp;
-        std::string ret = "[" + time.str() + "] -> " + this->msg;
-        return ret;
-    }
+    std::string serialize(void);
 };
 
 #endif // TELEMETRYTYPES_H

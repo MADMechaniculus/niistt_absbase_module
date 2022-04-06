@@ -6,6 +6,7 @@
 #include <future>
 #include <functional>
 #include <queue>
+#include <string>
 
 typedef std::pair<std::promise<void>, boost::function<void()>> taskPh_t;
 

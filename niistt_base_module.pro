@@ -18,7 +18,8 @@ CONFIG += c++14
 
 SOURCES += \
     abstractbasemodule.cpp \
-    telemetryflow.cpp
+    telemetryflow.cpp \
+    telemetrytypes.cpp
 
 HEADERS += \
     niistt_base_module_global.h \
@@ -32,11 +33,20 @@ HEADERS += \
 win32 {
 INCLUDEPATH += \
         "C:\\include" \
-        "C:\\include\\niistt_libs"
+        "C:\\include\\niistt_libs" \
+        "C:\\include\\boost_1_76_0"
 
 LIBS += \
         -L"C:\\libs" \
-        -L"C:\\libs\\niistt_libs"
+        -L"C:\\libs\\niistt_libs" \
+        -L"C:\\libs\\libboost_1.76.0" \
+        -llibboost_system-mgw7-mt-x32-1_76 \
+        -llibboost_thread-mgw7-mt-x32-1_76 \
+        -llibboost_date_time-mgw7-mt-x32-1_76 \
+        -llibboost_json-mgw7-mt-x32-1_76 \
+        -llibboost_chrono-mgw7-mt-x32-1_76 \
+        -llibboost_atomic-mgw7-mt-x32-1_76
+        -lpthread
 }
 
 # ===============================================================
