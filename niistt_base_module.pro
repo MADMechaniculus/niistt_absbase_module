@@ -40,6 +40,7 @@ LIBS += \
         -L"C:\\libs" \
         -L"C:\\libs\\niistt_libs" \
         -L"C:\\libs\\libboost_1.76.0" \
+        -L"C:\\libs\\boost_1.76.0" \
         -llibboost_system-mgw7-mt-x32-1_76 \
         -llibboost_thread-mgw7-mt-x32-1_76 \
         -llibboost_date_time-mgw7-mt-x32-1_76 \

@@ -18,10 +18,19 @@ class NIISTT_BASE_MODULE_EXPORT TelemetryMessage {
     boost::posix_time::ptime timeStamp;
     std::string msg{""};
 
-    TelemetryMessage(boost::posix_time::ptime timestamp, std::string message);
+    /**
+     * @brief Закрытый конструктор для обеспечения однозначности формирования timestamp
+     * @param timestamp Временная метка
+     * @param message Сообщение
+     */
+    TelemetryMessage(boost::posix_time::ptime timestamp, \
+                     std::string message);
 
 public:
-
+    /**
+     * @brief Конструктор копирования
+     * @param msg Экземпляр из которого будет произведено копирование
+     */
     TelemetryMessage(const TelemetryMessage & msg);
 
     /**
@@ -31,7 +40,11 @@ public:
      */
     static TelemetryMessage createMessage(std::string msg);
 
-    std::string serialize(void);
+    /**
+     * @brief Преобразование в строку
+     * @return Строка сообщения с временной меткой
+     */
+    std::string stringify(void);
 };
 
 #endif // TELEMETRYTYPES_H

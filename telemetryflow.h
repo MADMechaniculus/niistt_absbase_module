@@ -4,16 +4,37 @@
 #include "niistt_base_module_global.h"
 #include "telemetrytypes.h"
 
+/**
+ * @brief Класс реализующий телеметрический поток сообщений
+ */
 class NIISTT_BASE_MODULE_EXPORT TelemetryFlow
 {
+protected:
+    /**
+     * @brief Очередь сообщений потока телеметрии
+     */
     std::queue<TelemetryMessage> msgQueue;
+
+    /**
+     * @brief Мьютекс очереди сообщений
+     */
     boost::mutex queueMx;
 
+    /**
+     * @brief Флаг присутствия данных в очереди сообщений
+     */
     boost::atomic<bool> empty{true};
 
 public:
+    /**
+     * @brief Конструктор телеметрического потока
+     */
     TelemetryFlow();
 
+    /**
+     * @brief ПОлучение состояния очереди
+     * @return True - пусто, false - данные наличествуют
+     */
     bool isEmpty(void) const;
 
     /**

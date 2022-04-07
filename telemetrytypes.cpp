@@ -13,7 +13,7 @@ TelemetryMessage TelemetryMessage::createMessage(std::string msg) {
     return TelemetryMessage(boost::posix_time::second_clock::local_time(), msg);
 }
 
-std::string TelemetryMessage::serialize() {
+std::string TelemetryMessage::stringify() {
     std::ostringstream time;
     time << this->timeStamp;
     std::string ret = "[" + time.str() + "] -> " + this->msg;

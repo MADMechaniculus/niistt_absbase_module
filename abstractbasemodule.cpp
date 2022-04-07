@@ -1,6 +1,6 @@
 #include "abstractbasemodule.h"
 
-AbstractBaseModule::AbstractBaseModule()
+AbstractBaseModule::AbstractBaseModule() : identifier(boost::uuids::random_generator()())
 {
 }
 
@@ -23,7 +23,8 @@ void AbstractBaseModule::processQueue(int err) {
                 this->taskQueue.pop();
             }
         }  catch (std::exception & ex) {
-            this->taskQueue.front().first.set_exception(std::make_exception_ptr(ex));
+            this->taskQueue.front().first.set_exception(\
+                        std::make_exception_ptr(ex));
         }
     } else {
         this->taskQueue.front().first.set_exception(\
@@ -34,7 +35,8 @@ void AbstractBaseModule::processQueue(int err) {
     }
 }
 
-std::future<void> AbstractBaseModule::pushTask(std::function<void ()> &&func) {
+std::future<void> AbstractBaseModule::pushTask(\
+        std::function<void ()> &&func) {
     std::future<void> ret;
     std::lock_guard<std::mutex>(this->queueMx);
     if (this->taskQueue.size() < 100) {
