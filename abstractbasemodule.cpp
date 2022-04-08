@@ -50,3 +50,7 @@ std::future<void> AbstractBaseModule::pushTask(\
 void AbstractBaseModule::connectTlmFlow(TelemetryFlow *ptr) {
     this->tlmFlow = ptr;
 }
+
+const boost::uuids::uuid &AbstractBaseModule::getId() {
+    return this->identifier;
+}
