@@ -6,6 +6,7 @@ AbstractBaseModule::AbstractBaseModule() : identifier(boost::uuids::random_gener
 
 void AbstractBaseModule::stop()
 {
+    this->eFlow("Module " + boost::uuids::to_string(this->identifier) + " has stopped");
     this->stopFlag.store(true);
 }
 
@@ -32,6 +33,12 @@ void AbstractBaseModule::processQueue(int err) {
                         std::runtime_error("Module extern error")\
                         )\
                     );
+    }
+}
+
+void AbstractBaseModule::eFlow(std::string message) {
+    if (this->tlmFlow != nullptr) {
+        this->tlmFlow->enqueue(TelemetryMessage::createMessage(message));
     }
 }
 

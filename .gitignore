@@ -2,3 +2,5 @@ builds
 doc
 docs
 *.pro.*
+*.so.*
+*.o

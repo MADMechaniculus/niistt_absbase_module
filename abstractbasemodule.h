@@ -8,6 +8,7 @@
 
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/random_generator.hpp>
+#include <boost/uuid/uuid_io.hpp>
 
 class NIISTT_BASE_MODULE_EXPORT AbstractBaseModule
 {
@@ -26,6 +27,12 @@ protected:
      * @brief Обработка запросов в очереди запросов приложения
      */
     void processQueue(int err);
+
+    /**
+     * @brief Метод добавления сообщения в поток телеметрии для учёта состояния указателя на поток телеметрии
+     * @param message Сообщения модуля
+     */
+    void eFlow(std::string message);
 
 public:
     /**
@@ -79,9 +86,7 @@ public:
      * @brief Получение идентификатора модуля
      * @return UUID
      */
-    const boost::uuids::uuid & getId(void) {
-        return this->identifier;
-    }
+    const boost::uuids::uuid & getId(void);
 
 };
 
