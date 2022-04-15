@@ -1,6 +1,11 @@
 builds
+build
 doc
 docs
 *.pro.*
 *.so.*
 *.o
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake

@@ -47,9 +47,10 @@ std::future<void> AbstractBaseModule::pushTask(\
     std::future<void> ret;
     std::lock_guard<std::mutex>(this->queueMx);
     if (this->taskQueue.size() < 100) {
-        std::promise<void> prm;
-        ret = prm.get_future();
-        this->taskQueue.emplace(std::move(prm), func);
+        std::pair<std::promise<void>, std::function<void()>> temp;
+        ret = temp.first.get_future();
+        temp.second = func;
+        this->taskQueue.push(std::move(temp));
     }
     return ret;
 }
