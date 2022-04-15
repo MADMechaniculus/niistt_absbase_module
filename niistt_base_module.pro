@@ -24,9 +24,12 @@ SOURCES += \
 HEADERS += \
     niistt_base_module_global.h \
     abstractbasemodule.h \
+    proctypes.h \
     telemetryflow.h \
     telemetrytypes.h \
-    typeimpls.h
+    typeimpls.h \
+    abstractgetproc.h \
+    abstractpostproc.h
 
 # LIBS, INCLUDEPATH WIN32 =======================================
 
