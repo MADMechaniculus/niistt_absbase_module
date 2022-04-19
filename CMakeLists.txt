@@ -7,6 +7,13 @@ add_library(${PROJECT_NAME} SHARED
     abstractbasemodule.cpp
     telemetryflow.cpp
     telemetrytypes.cpp
+    abstractbasemodule.h
+    abstractgetproc.h
+    abstractpostproc.h
+    proctypes.h
+    telemetryflow.h
+    telemetrytypes.h
+    typeimpls.h
     )
 
 if (WIN32)
@@ -22,7 +29,14 @@ endif ()
 target_include_directories(${PROJECT_NAME} PUBLIC ${BOOST_INCLUDEDIR} PRIVATE .)
 target_link_directories(${PROJECT_NAME} PUBLIC ${BOOST_LIBRARYDIR})
 
-find_package(Boost COMPONENTS system thread REQUIRED)
+if (WIN32)
+    find_package(Boost COMPONENTS system-mgw7-mt-x32-1_76 thread-mgw7-mt-x32-1_76 REQUIRED)
+elseif (UNIX)
+    find_package(Boost COMPONENTS system thread REQUIRED)
+else()
+    message( FATAL_ERROR "Unknown OS!")
+endif()
+
 find_package(Threads REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})

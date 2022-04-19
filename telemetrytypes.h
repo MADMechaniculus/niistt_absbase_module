@@ -1,8 +1,6 @@
 #ifndef TELEMETRYTYPES_H
 #define TELEMETRYTYPES_H
 
-#include "niistt_base_module_global.h"
-
 #include <cstdint>
 #include <string>
 #include <queue>
@@ -13,7 +11,7 @@
 #include <boost/thread.hpp>
 #include <boost/atomic.hpp>
 
-class NIISTT_BASE_MODULE_EXPORT TelemetryMessage {
+class TelemetryMessage {
 
     boost::posix_time::ptime timeStamp;
     std::string msg{""};

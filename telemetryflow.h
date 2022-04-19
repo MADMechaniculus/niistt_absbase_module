@@ -1,13 +1,12 @@
 #ifndef TELEMETRYFLOW_H
 #define TELEMETRYFLOW_H
 
-#include "niistt_base_module_global.h"
 #include "telemetrytypes.h"
 
 /**
  * @brief Класс реализующий телеметрический поток сообщений
  */
-class NIISTT_BASE_MODULE_EXPORT TelemetryFlow
+class TelemetryFlow
 {
 protected:
     /**

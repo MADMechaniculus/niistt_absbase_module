@@ -1,8 +1,6 @@
 #ifndef ABSTRACTBASEMODULE_H
 #define ABSTRACTBASEMODULE_H
 
-#include "niistt_base_module_global.h"
-
 #include "typeimpls.h"
 #include "telemetryflow.h"
 
@@ -10,7 +8,7 @@
 #include <boost/uuid/random_generator.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-class NIISTT_BASE_MODULE_EXPORT AbstractBaseModule
+class AbstractBaseModule
 {
 protected:
     boost::uuids::uuid identifier;
