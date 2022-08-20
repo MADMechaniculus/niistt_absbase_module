@@ -42,3 +42,5 @@ find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
     
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
+
+install(TARGETS ${PROJECT_NAME} DESTINATION C:/libs INCLUDES DESTINATION C:/include/niistt_base_module)

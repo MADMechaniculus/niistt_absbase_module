@@ -10,7 +10,7 @@ TelemetryMessage::TelemetryMessage(const TelemetryMessage &msg) {
 }
 
 TelemetryMessage TelemetryMessage::createMessage(std::string msg) {
-    return TelemetryMessage(boost::posix_time::second_clock::local_time(), msg);
+    return TelemetryMessage(boost::posix_time::microsec_clock::local_time(), msg);
 }
 
 std::string TelemetryMessage::stringify() {

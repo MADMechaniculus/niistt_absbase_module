@@ -11,7 +11,7 @@ class AbstractGETProc {
     CTRL * appPtr{nullptr};
 public:
     AbstractGETProc() {};
-    virtual processorProcRet_t process(std::string target, http::file_body::value_type & ansBody) = 0;
+    virtual processorProcRet_t process(std::string target, std::string rootPath, http::file_body::value_type & ansBody) = 0;
     void connect(CTRL * ptr) {
         this->appPtr = ptr;
     }

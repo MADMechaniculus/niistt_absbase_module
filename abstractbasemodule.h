@@ -37,6 +37,11 @@ public:
      * @brief Конструктор модуля
      */
     AbstractBaseModule();
+    
+    /**
+     * @brief Виртуальный дестркутор для безопасностиы
+     */
+    virtual ~AbstractBaseModule() {}
 
     /**
      * @brief Процедура инициализации модуля

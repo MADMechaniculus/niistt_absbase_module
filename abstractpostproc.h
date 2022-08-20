@@ -8,6 +8,7 @@
  */
 template <class CTRL>
 class AbstractPOSTProc {
+protected:
     CTRL * appPtr{nullptr};
 public:
     AbstractPOSTProc() {};
