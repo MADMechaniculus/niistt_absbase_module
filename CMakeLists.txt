@@ -30,16 +30,23 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${BOOST_INCLUDEDIR} PRIVATE .)
 target_link_directories(${PROJECT_NAME} PUBLIC ${BOOST_LIBRARYDIR})
 
 if (WIN32)
-    find_package(Boost COMPONENTS system-mgw7-mt-x32-1_76 thread-mgw7-mt-x32-1_76 REQUIRED)
+    find_package(Boost COMPONENTS
+        system-mgw7-mt-x32-1_76
+        thread-mgw7-mt-x32-1_76
+        REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PUBLIC wsock32 ws2_32)
 elseif (UNIX)
-    find_package(Boost COMPONENTS system thread REQUIRED)
+    find_package(Boost COMPONENTS
+        system
+        thread
+        REQUIRED)
 else()
     message( FATAL_ERROR "Unknown OS!")
 endif()
 
 find_package(Threads REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${Boost_LIBRARIES})
     
 set_target_properties(${PROJECT_NAME} PROPERTIES VERSION ${PROJECT_VERSION})
 
